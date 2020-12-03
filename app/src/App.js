@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+
+import fetchjobs from './fetchjobs';
+import {Container} from 'react-bootstrap';
 
 function App() {
+
+  
+    //Using Hooks to return the jSOn data
+  const {jobs, loading, error} =  fetchjobs()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <Container>
+      {loading && <h1>Loading</h1>}
+      {error && <h1>Error occured</h1>}
+      <h1>{jobs.length}</h1>
+    </Container>
+    
   );
 }
 
