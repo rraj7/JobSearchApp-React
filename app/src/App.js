@@ -3,6 +3,7 @@ import JobBoard from './components/jobboard';
 import {ThemeProvider} from "styled-components";
 import { GlobalStyles, lightTheme, darkTheme } from "./components/Theme";
 import { makeStyles } from '@material-ui/core/styles';
+import { Toggle } from './components/ToggleIcon'
 
 export default function App(){
   const classes = useStyles();
@@ -28,51 +29,45 @@ export default function App(){
   // const filteredJobs = jobs.filter(filter);
 
   return(
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <>
-        <GlobalStyles />
-        <div>
-          <div className={classes.headerContainer}>
-            <button onClick={themeToggler}>Switch Theme</button>
-          
-            <header className={classes.header}>
-              <h1>Github Jobs Board</h1>
-            </header>
-          </div>
-                {
-                  jobs.length === 0 
-                    ? (<p>Jobs are loading....</p>)
-                    : (jobs.map((job) => <JobBoard job = {job} key = {job.id} />))
-                };
-        </div>
-      </>
+    <ThemeProvider theme={theme === 'dark' ? darkTheme : lightTheme}>
+        <>
+            <GlobalStyles />
+            <div  >
+                <div className={classes.headerContainer}>
+                    <button onClick={themeToggler}>Switch Theme</button>
+                    <header className={classes.header}>
+                        <h1>Github Jobs Board</h1>
+                    </header>
+                </div>
+                    {
+                    jobs.length === 0 
+                        ? (<p>Jobs are loading....</p>)
+                        : (jobs.map((job) => <JobBoard job = {job} key = {job.id} />))
+                    }
+            </div>
+        </>
     </ThemeProvider>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
+    headerContainer: {
+        backgroundColor: "#434abb"
+    },
   header: {
     textAlign:"center",
     fontFamily: "consolas",
     fontWeight: "400"
   },
-  headerContainer:{
-    background: '#5865E0'
-    
-  },
   root: {
     flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
   },
 }));
 
 //1.Study the design & json
-//2. JOb Borad 
-//3. Get the data from the JSON 
-//4. Pass the data
-//5. Style
-//6. Filter
+// 2. JOb Borad 
+// 3. Get the data from the JSON 
+// 4. Pass the data
+// 5. Style
+// 6. Filter
+// 
